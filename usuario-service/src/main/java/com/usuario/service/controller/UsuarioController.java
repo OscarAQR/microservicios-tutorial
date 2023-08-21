@@ -34,7 +34,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> obtenerUsuario(@PathVariable("id") int id){
+	public ResponseEntity<Usuario> obtenerUsuario(@PathVariable int id){
 		Usuario usuario = usuarioService.getUsuarioById(id);
 		if(usuario == null) {
 			return ResponseEntity.notFound().build();
@@ -75,19 +75,19 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/carro/{usuarioId}")
-	public ResponseEntity<Carro> guardarCarro(@PathVariable("usuarioId") int usuarioId,@RequestBody Carro carro){
+	public ResponseEntity<Carro> guardarCarro(@PathVariable int usuarioId,@RequestBody Carro carro){
 		Carro nuevoCarro = usuarioService.saveCarro(usuarioId,carro);
 		return ResponseEntity.ok(nuevoCarro);
 	}
 	
 	@PostMapping("/moto/{usuarioId}")
-	public ResponseEntity<Moto> guardarMoto(@PathVariable("usuarioId") int usuarioId, @RequestBody Moto moto){
+	public ResponseEntity<Moto> guardarMoto(@PathVariable int usuarioId, @RequestBody Moto moto){
 		Moto  nuevaMoto = usuarioService.saveMoto(usuarioId, moto);
 		return ResponseEntity.ok(nuevaMoto);
 	}
 	
 	@GetMapping("/todos/{usuarioId}")
-	public ResponseEntity<Map<String,Object>> listarTodosLosVehiculos(@PathVariable("usuarioId") int usuarioId){
+	public ResponseEntity<Map<String,Object>> listarTodosLosVehiculos(@PathVariable int usuarioId){
 		Map<String, Object> resultado = usuarioService.getUsuarioAndVehiculos(usuarioId);
 		return ResponseEntity.ok(resultado);
 	}
